@@ -264,16 +264,13 @@ X_train, X_val, y_train, y_val = train_test_split(X_train_np, y_train_np, test_s
 print("Yay: X_train shape: {}".format(X_train.shape))
 
 
-opt = RMSprop(lr=0.001, decay=1e-6, clipvalue=0.5)
-
 prefix ="cnn_2d_2"
 
+opt = RMSprop(lr=0.001, decay=1e-6, clipvalue=0.5)
 model = Sequential()
-
 model.add(TimeDistributed(Conv2D(32, (3,3), activation='relu',padding='same'),input_shape=(X_train.shape[1],X_train.shape[2],X_train.shape[3],X_train.shape[4])))
 model.add(TimeDistributed(MaxPooling2D(pool_size=(3,2))))
 model.add(Dropout(0.4))
-
 model.add(TimeDistributed(Flatten()))
 model.add(Bidirectional(GRU(512, recurrent_dropout = 0.4, dropout=0.4, return_sequences=True, activation='relu', implementation=2)))
 model.add(Bidirectional(GRU(128, recurrent_dropout = 0.45, dropout=0.45, return_sequences=True, activation='relu', implementation=2)))
