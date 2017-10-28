@@ -1,25 +1,21 @@
-
 # coding: utf-8
 
-# In[1]:
-
-
-# import pandas as pd
 import numpy as np
+import sys
 
 
-# In[2]:
+DATA_DIR = sys.argv[1]
+OUTFILE_NAME = sys.argv[2]
 
+_MAP_FILE_PATH = DATA_DIR + 'phones/48_39.map'
+_MAP_CHAR_PATH = DATA_DIR + '48phone_char.map'
 
-_MAP_FILE_PATH = 'data/48_39.map'
-_MAP_CHAR_PATH = 'data/48phone_char.map'
+_TRAIN_LABEL_PATH = DATA_DIR + 'label/train.lab'
 
-_TRAIN_LABEL_PATH = 'data/train.lab'
-
-_FBANK_TRAIN_PATH = 'data/fbank/train.ark'
-_FBANK_TEST_PATH = 'data/fbank/test.ark'
-_MFCC_TRAIN_PATH = 'data/mfcc/train.ark'
-_MFCC_TEST_PATH = 'data/mfcc/test.ark'
+_FBANK_TRAIN_PATH = DATA_DIR + 'fbank/train.ark'
+_FBANK_TEST_PATH = DATA_DIR + 'fbank/test.ark'
+_MFCC_TRAIN_PATH = DATA_DIR + 'mfcc/train.ark'
+_MFCC_TEST_PATH = DATA_DIR + 'mfcc/test.ark'
 
 
 # In[7]:
