@@ -160,7 +160,7 @@ print(model.summary())
 
 #model.save('special.h5')
 
-model = load_model('special_2.h5')
+model = load_model('special.h5')
 
 encoder_model = Model(encoder_inputs, encoder_states)
 
@@ -175,8 +175,8 @@ decoder_model = Model(
     [decoder_outputs] + decoder_states)
 
 
-encoder_model = load_model('encoder_2.h5')
-decoder_model = load_model('decoder_2.h5')
+encoder_model = load_model('encoder.h5')
+decoder_model = load_model('decoder.h5')
 
 def decode_sequence(input_seq):
     # Encode the input as state vectors.
