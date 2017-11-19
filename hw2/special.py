@@ -36,6 +36,7 @@ tf.set_random_seed(1234)
 
 #K.set_learning_phase(1)
 # DATA_DIR = 'datalite/'
+
 DATA_DIR = sys.argv[1]
 OUTPUT_PATH = sys.argv[2]
 

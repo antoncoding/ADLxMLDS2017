@@ -160,7 +160,7 @@ print(model.summary())
 
 #model.save('special.h5')
 
-model = load_model('special.h5')
+#model = load_model('special.h5')
 
 encoder_model = Model(encoder_inputs, encoder_states)
 
