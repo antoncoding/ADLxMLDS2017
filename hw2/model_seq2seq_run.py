@@ -66,11 +66,10 @@ with open(DATA_DIR+'peer_review_id.txt') as f:
     for line in content:
         peerID = line.split('.')[0]
         id_peer.append(peerID)
-        print(peerID)
+#        print(peerID)
 
 
 for peerID in id_peer:
-    print(peerID)
     features[peerID] = np.load(peer_feature_dir + peerID + '.avi.npy')
 
 
