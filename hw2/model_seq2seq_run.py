@@ -63,11 +63,15 @@ for _type in ['training','testing']:
 
 with open(DATA_DIR+'peer_review_id.txt') as f:
     content = f.readlines()
-    peerID = content.split('.')[0]  
-    id_peer.append(ID)
+    for line in content:
+        peerID = line.split('.')[0]
+        id_peer.append(peerID)
+        print(peerID)
+
 
 for peerID in id_peer:
-    features[peerID] = np.load(peer_feature_dir + peerID + '.npy')
+    print(peerID)
+    features[peerID] = np.load(peer_feature_dir + peerID + '.avi.npy')
 
 
 for k,v in caption.items():
@@ -160,7 +164,7 @@ decoder_outputs = decoder_dense(merge_att_lstm)
 model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
 
-model.load_weights('weights.h5')
+#model.load_weights('weights.h5')
 
 # # Run training
 
@@ -213,7 +217,7 @@ def decode_str(model, Xtest):
 #             if char >= num_vocab:
 #                 text[idx] = 0
 
-# model = load_model('v728_model.h5'.format(num_vocab, latent_dim))
+model = load_model('v728_model_2300_256.h5'.format(num_vocab, latent_dim))
 
 
 with open(OUTFILE,'w') as outfile:
@@ -222,8 +226,8 @@ with open(OUTFILE,'w') as outfile:
         decoded_sentence = decode_str(model, np.asarray([sample]))
         outfile.write(tid+'.avi,'+decoded_sentence+'\n')
 
-# with open(PEEROUT,'w') as outfile:
-#     for tid in id_peer:
-#         sample = features[tid]
-#         decoded_sentence = decode_str(model, np.asarray([sample]))
-#         outfile.write(tid+'.avi,'+decoded_sentence+'\n')
+with open(PEEROUT,'w') as outfile:
+    for tid in id_peer:
+        sample = features[tid]
+        decoded_sentence = decode_str(model, np.asarray([sample]))
+        outfile.write(tid+'.avi,'+decoded_sentence+'\n')
