@@ -21,6 +21,7 @@ def preprocess(I):
 class Agent_PG(Agent):
     def __init__(self, env, args):
  
+        # tf.reset_default_graph() 
         super(Agent_PG,self).__init__(env)
         self.action_size = 3
         self.gamma = 0.99
@@ -38,14 +39,14 @@ class Agent_PG(Agent):
             print('Loading trained model')
             self.load()
 
-        if args.train_pg:
-            print('Building new model')
-            self.model = self.build_model()
-            # self.model.summary()
-            with open("models_pg/{}.json".format(self.model_name), 'w') as f:
-                json.dump(self.model.to_json(), f)
-            if not (os.path.exists(self.data_path)):
-                os.makedirs(self.data_path)
+        # if args.train_pg:
+        #     print('Building new model')
+        #     self.model = self.build_model()
+        #     # self.model.summary()
+        #     with open("models_pg/{}.json".format(self.model_name), 'w') as f:
+        #         json.dump(self.model.to_json(), f)
+        #     if not (os.path.exists(self.data_path)):
+        #         os.makedirs(self.data_path)
  
  
     def init_game_setting(self):

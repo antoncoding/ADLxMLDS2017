@@ -13,6 +13,7 @@ class Agent_DQN(Agent):
     def __init__(self, env, args):
         super(Agent_DQN,self).__init__(env)
 
+        tf.reset_default_graph() 
         if args.test_dqn:
             #you can load your model here
             print('loading trained model')
@@ -23,8 +24,8 @@ class Agent_DQN(Agent):
         self.sess = tf.Session(config=self.config)
         
 
-        if args.train_dqn:
-            os.environ['CUDA_VISIBLE_DEVICES']='1'
+        #if args.train_dqn:
+        #    os.environ['CUDA_VISIBLE_DEVICES']='1'
 
 
         network_params = dict(
@@ -75,15 +76,15 @@ class Agent_DQN(Agent):
         self.do_duel_q = 0
 
 
-        if args.train_dqn:
-            self.model_saver = tf.train.Saver()    
-            self.serial_man = SerialNumberManager('./models_dqn', './log', './params', './out')
-            self.model_path, self.params_path, self.out_path, self.log_path = self.serial_man.get_paths('1-1')
-            print('[INFO]:\n model_path={}\n params_path={}\n'.format(self.model_path, self.params_path))
-            self.log_file = open(self.log_path, 'w')
-            self.test_mode = False
+        # if args.train_dqn:
+        #     self.model_saver = tf.train.Saver()    
+        #     self.serial_man = SerialNumberManager('./models_dqn', './log', './params', './out')
+        #     self.model_path, self.params_path, self.out_path, self.log_path = self.serial_man.get_paths('1-1')
+        #     print('[INFO]:\n model_path={}\n params_path={}\n'.format(self.model_path, self.params_path))
+        #     self.log_file = open(self.log_path, 'w')
+        #     self.test_mode = False
         
-        elif args.test_dqn:
+        if args.test_dqn:
             model_saver = tf.train.Saver()
             model_saver.restore(self.sess, './final_models/dqn')
             self.test_mode = True
