@@ -12,6 +12,9 @@ import random
 import json
 import os
 
+tf.set_random_seed(50)
+
+
 random.seed(729)
 np.random.seed(1005)
 
