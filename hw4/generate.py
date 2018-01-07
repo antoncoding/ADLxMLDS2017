@@ -12,7 +12,7 @@ import random
 import json
 import os
 
-
+random.seed(729)
 np.random.seed(1005)
 
 def main():
