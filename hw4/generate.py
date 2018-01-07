@@ -63,6 +63,7 @@ def main():
   caption_image_dic = {}
 
   for i, key in enumerate(h):
+    np.random.seed(1005)
     caption_images = []
     z_noise = np.random.uniform(0, 0, [n_images, z_dim])
     caption = np.array([h[key][0, :caption_vector_length]
